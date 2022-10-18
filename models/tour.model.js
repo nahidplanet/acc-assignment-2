@@ -3,27 +3,28 @@ const mongoose = require("mongoose");
 const tourSchema = new mongoose.Schema({
     name: {
         type: String,
-        require: [true, "name field is require"],
+        required: [true, "please provide a Tour name"],
+        unique: true,
+        trim: true,
         minLength: [3, "the name is must be 3 character or more"],
-        maxLength: [100, "name is too large"],
-        trim: true
+        maxLength: [100, "name is too large"]
     },
     description: {
         type: String,
-        require: [true, "description field is require"]
+        required: [true, "description field is required"]
     },
     image: {
         type: String,
-        require: [true, "image field is require"]
+        required: [true, "image field is required"]
     },
     price: {
         type: Number,
-        require: [true, "price field is require"],
+        required: [true, "price field is required"],
         min: [0, "price can't be negative "]
     },
     status: {
         type: String,
-        require: [true, "status field is require"],
+        required: [true, "status field is required"],
         enum: {
             values: ["available", "unavailable"],
             message: "status must be included"

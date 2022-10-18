@@ -1,7 +1,10 @@
 const mongoose = require("mongoose");
-const app = require("./app");
 require("dotenv").config();
+const { errorHandler } = require("./middleware/errorHandler");
 
+const app = require("./app");
+
+// port 
 const port = process.env.PORT || 8000;
 
 
@@ -13,7 +16,11 @@ mongoose.connect(process.env.DATABASE_LOCAL)
         console.log(err.message);
     });
 
+// global error handler 
+app.use(errorHandler)
 
+
+// server running 
 app.listen(port, () => {
     console.log(`server is running on ${port}`);
 })
