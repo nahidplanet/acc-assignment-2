@@ -39,7 +39,6 @@ module.exports.getTours = async (req, res, next) => {
 module.exports.getTourById = async (req, res, next) => {
     try {
         const { id } = req.params;
-        console.log(id);
         const result = await getTourByIdService(id);
         res.status(200).json({ status: "success", data: result });
     } catch (error) {
