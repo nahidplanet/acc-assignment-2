@@ -1,19 +1,12 @@
 const express = require('express');
-const {
-    getTours,
-    createTour,
-    getTourById
-} = require('../../controllers/tour.controller');
+const { trendingView, updateTourById, cheapestTour } = require('../../controllers/tour.controller');
 const tourRoute = express.Router();
 
 
 
-tourRoute.route("/")
-    .get(getTours)
-    .post(createTour)
 
+tourRoute.route("/trending").get(trendingView);
+tourRoute.route("/cheapest").get(cheapestTour);
+tourRoute.route("/:id").patch(updateTourById);
 
-tourRoute.route("/:id")
-    .get(getTourById)
-
-module.exports = tourRoute;
+module.exports =  tourRoute;
